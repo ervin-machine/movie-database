@@ -1,12 +1,29 @@
 .tabs {
+    position: relative;
     display: flex;
     justify-content: space-evenly;
+    margin-top: 50px;
 }
 .tab-item {
     width: 150px;
     height: 50px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border: none;
+    color: rgb(136, 134, 124);
 }
-.movie-content {
-    flex-wrap: wrap;
-    justify-content: space-around;
+.tab-item:focus {
+    background-color: lightblue;
+}
+.tab-item:hover {
+    background-color: lightblue;
+}
+.search {
+    position:relative;
+    left: 43%;
+    top: 10px;
+    width: 200px;
+    height: 30px;
+    border: 2px solid grey;
+    border-radius: 10px;
 }

@@ -9,10 +9,11 @@ function Tabs() {
     const [movieList, setMovieList] = useState([]);
     const [serieList, setSerieList] = useState([]);
     const [input, setInput] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const style = {
         on: {
-            display: 'flex',
+            display: 'block',
         },
         off: {
             display: 'none',
@@ -26,27 +27,41 @@ function Tabs() {
     const OffClickTab = () => {
         setTabClicked(false);
     }
-
     const fetchMovieList = async () => {
-        return await fetch('https://api.themoviedb.org/3/movie/top_rated?api_key=5e9d7e978fe9c629e6a149da1eeb9dbb')
-          .then(response => response.json())
-          .then(data => {
-             setMovieList(data.results)
-           });}
+        Promise.all([
+            await fetch('https://api.themoviedb.org/3/movie/top_rated?api_key=5e9d7e978fe9c629e6a149da1eeb9dbb'),
+            await fetch('https://api.themoviedb.org/3/movie/top_rated?api_key=5e9d7e978fe9c629e6a149da1eeb9dbb&language=en-US&page=2')
+        ])
+        .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
+        .then(([data, data1]) => {
+            setLoading(true)
+            let movies = []
+            movies = data.results.concat(data1.results)
+            setMovieList(movies)
+            console.log(movies)
+        })
+    }
 
     const fetchSerieList = async () => {
-           return await fetch('https://api.themoviedb.org/3/tv/top_rated?api_key=5e9d7e978fe9c629e6a149da1eeb9dbb')
-          .then(response => response.json())
-          .then(data => {
-             setSerieList(data.results)
-           });}
+        Promise.all([
+            await fetch('https://api.themoviedb.org/3/tv/top_rated?api_key=5e9d7e978fe9c629e6a149da1eeb9dbb&language=en-US&page=1'),
+            await fetch('https://api.themoviedb.org/3/tv/top_rated?api_key=5e9d7e978fe9c629e6a149da1eeb9dbb&language=en-US&page=2')
+        ])
+        .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
+        .then(([data, data1]) => {
+            setLoading(true)
+            let series = []
+            series = data.results.concat(data1.results)
+            setSerieList(series)
+            console.log(series)
+        })}
 
     useEffect( () => {
         fetchMovieList();
         fetchSerieList();
     },[]);
 
-    const searchInput = async(event) => {
+    const searchInput = (event) => {
         setInput(event.target.value);
         
     }
@@ -54,8 +69,9 @@ function Tabs() {
     return (
         <div>
             <input 
+                className="search"
                 type="text"
-                placeholder="search country"
+                placeholder="Type to search"
                 onChange={searchInput}
             />
             <div className="tabs">
@@ -64,22 +80,10 @@ function Tabs() {
             </div>
             <div className="contents">
                 <div className="movie-content" style={isTabClicked ? style.on : style.off}>
-                    {movieList.filter((movie) => {
-                        if(input === "") {
-                            return movie
-                        }  else if(input.length === 3 && movie.title.toLowerCase().includes(input.toLowerCase())) {
-                            return movie
-                        } 
-                    }).map((movie) => {
-                        return (
-                            <MovieList moviename={movie.title} poster_path={movie.poster_path}/>
-                        )
-                    })
-                 }
-                    
+                    <MovieList movieList={movieList} loading={loading} input={input}/> 
                 </div>
                 <div className="serie-content" style={isTabClicked ? style.off : style.on}>
-                    <SerieList serieList={serieList} />
+                    <SerieList serieList={serieList} loading={loading} input={input} />
                 </div>
             </div>
         </div>
