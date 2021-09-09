@@ -12,18 +12,44 @@
     border: none;
     color: rgb(136, 134, 124);
 }
-.tab-item:focus {
-    background-color: lightblue;
-}
-.tab-item:hover {
-    background-color: lightblue;
+.search-section {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    top: 10px;
+    
 }
 .search {
-    position:relative;
-    left: 43%;
-    top: 10px;
     width: 200px;
     height: 30px;
     border: 2px solid grey;
     border-radius: 10px;
+}
+.spinner {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 2px dotted black;
+    animation: spin 5s normal linear infinite;
+    margin-top: 5px;
+    margin-right: -120px;
+}
+@keyframes spin {
+    0% {
+        transform: rotate3d(0, 0, 1, 0deg);
+      }
+      25% {
+        transform: rotate3d(0, 0, 1, 90deg);
+      }
+      50% {
+        transform: rotate3d(0, 0, 1, 180deg);
+      }
+      75% {
+        transform: rotate3d(0, 0, 1, 270deg);
+      }
+      100% {
+        transform: rotate3d(0, 0, 1, 360deg);
+      }
 }

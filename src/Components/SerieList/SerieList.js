@@ -5,7 +5,6 @@ import './SerieList.css'
 const SerieList = ({serieList=[], input = '', loading=false}) => {
     const [isSelected, setSelected] = useState({});
     const [view, setView] = useState(false);
-    const [searchResult, setSearchResult] = useState(true);
 
     const style = {
         on: {
@@ -48,13 +47,17 @@ const SerieList = ({serieList=[], input = '', loading=false}) => {
                     </>
                 )
             })
-        : <h2>loading</h2>
+        : 
+        <div className="loading">
+        <div class="spinner"></div>
+        <h2 className="loading-text">loading</h2>
+    </div>
         }
     </div>
     {
         isSelected.poster_path && (
-            <div className="view" style={view ? style.on : style.off}>
-                <button onClick={closeView}>X</button>
+            <div className="view-serie" style={view ? style.on : style.off}>
+                <i class="back fas fa-long-arrow-alt-left" onClick={closeView}></i>
                 <img className="view-image" 
                     src={`https://image.tmdb.org/t/p/original${isSelected.poster_path}`} 
                     alt="movie" 

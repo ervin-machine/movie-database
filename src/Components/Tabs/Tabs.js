@@ -10,7 +10,7 @@ function Tabs() {
     const [serieList, setSerieList] = useState([]);
     const [input, setInput] = useState('');
     const [loading, setLoading] = useState(false);
-
+    const [searching, setSearching] = useState(false);
     const style = {
         on: {
             display: 'block',
@@ -38,7 +38,6 @@ function Tabs() {
             let movies = []
             movies = data.results.concat(data1.results)
             setMovieList(movies)
-            console.log(movies)
         })
     }
 
@@ -53,7 +52,6 @@ function Tabs() {
             let series = []
             series = data.results.concat(data1.results)
             setSerieList(series)
-            console.log(series)
         })}
 
     useEffect( () => {
@@ -63,24 +61,32 @@ function Tabs() {
 
     const searchInput = (event) => {
         setInput(event.target.value);
+        if(event.target.value === ""){
+            setSearching(false);
+        }
+        else{
+            setSearching(true)
+        }
         
     }
-
     return (
         <div>
+            <div className="search-section">
             <input 
                 className="search"
                 type="text"
                 placeholder="Type to search"
                 onChange={searchInput}
             />
+            <div style={searching ? style.on : style.off} class="spinner"></div>
+            </div>
             <div className="tabs">
                 <button className="tab-item" onClick={OnClickTab}>Movies</button>
                 <button className="tab-item" onClick={OffClickTab}>Series</button>
             </div>
             <div className="contents">
                 <div className="movie-content" style={isTabClicked ? style.on : style.off}>
-                    <MovieList movieList={movieList} loading={loading} input={input}/> 
+                    <MovieList movieList={movieList} loading={loading} input={input} search={searching}/> 
                 </div>
                 <div className="serie-content" style={isTabClicked ? style.off : style.on}>
                     <SerieList serieList={serieList} loading={loading} input={input} />

@@ -5,7 +5,6 @@ import './MovieList.css'
 const MovieList = ({movieList=[], input = '', loading=false}) => {
     const [isSelected, setSelected] = useState({});
     const [view, setView] = useState(false);
-    const [searchResult, setSearchResult] = useState(true);
 
     const style = {
         on: {
@@ -28,7 +27,7 @@ const MovieList = ({movieList=[], input = '', loading=false}) => {
   return (
     <>
     <div className="movie-list">
-        {loading ? movieList.filter((movie) => {
+        {loading ? movieList.filter(movie => {
             if(input === "") {
                 return movie
             }  else if(movie.title.substr(2).toLowerCase().includes(input.substr(2).toLowerCase())) {
@@ -48,13 +47,17 @@ const MovieList = ({movieList=[], input = '', loading=false}) => {
                     </>
                 )
             })
-        : <h2>loading</h2>
+        : <div className="loading">
+            <div class="spinner"></div>
+            <h2 className="loading-text">loading</h2>
+        </div>
+        
         }
     </div>
     {
         isSelected.poster_path && (
-            <div className="view" style={view ? style.on : style.off}>
-                <i class="fas fa-long-arrow-alt-left" onClick={closeView}></i>
+            <div className="view-movie" style={view ? style.on : style.off}>
+                <i class="back fas fa-long-arrow-alt-left" onClick={closeView}></i>
                 <img className="view-image" 
                     src={`https://image.tmdb.org/t/p/original${isSelected.poster_path}`} 
                     alt="movie" 
