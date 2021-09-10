@@ -8,11 +8,17 @@
     height: 350px;
     margin-top: 30px;
 }
-
+.search-result{
+  display: none;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 500;
+  color:coral;
+}
 .view-serie{
   position: absolute;
   top: 0%;
-  transform: translateX(75%);
+  transform: translate(75%, 10%);
   width: 40% !important;
   height: auto !important;
   background-color: #0b0b13 !important;

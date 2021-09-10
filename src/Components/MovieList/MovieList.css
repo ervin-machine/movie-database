@@ -3,8 +3,12 @@
     flex-wrap: wrap;
     justify-content: space-around;
 }
-#par {
+.search-result{
   display: none;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 500;
+  color:coral;
 }
 .movie-card{
     width: 350px;

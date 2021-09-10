@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './MovieList.css'
-
+import $ from 'jquery';
 
 const MovieList = ({movieList=[], input = '', loading=false}) => {
     const [isSelected, setSelected] = useState({});
@@ -23,16 +23,28 @@ const MovieList = ({movieList=[], input = '', loading=false}) => {
     const closeView = () => {
         setView(false);
     }
-
+    const searchResult = () => {
+        if($('.movie-list').is(':empty')){
+            $('.search-result').show();
+        }
+        else {
+            $('.search-result').hide();
+        }
+    }
+    useEffect( () => {
+        searchResult();
+    });
     
   return (
     <>
+    <p className="search-result">Movies not found</p>
     <div className="movie-list">
     {loading ? movieList.filter(movie => {
         if(input === "") {
+            $('.parag').hide();
             return movie
         }  else if(movie.title.substr(2).toLowerCase().includes(input.substr(2).toLowerCase())) {
-                return movie
+            return movie
             }
         }).slice(0, 30).map((movie) => {
             return (

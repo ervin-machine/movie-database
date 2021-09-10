@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './SerieList.css'
-
+import $ from 'jquery';
 
 const SerieList = ({serieList=[], input = '', loading=false}) => {
     const [isSelected, setSelected] = useState({});
@@ -23,9 +23,20 @@ const SerieList = ({serieList=[], input = '', loading=false}) => {
     const closeView = () => {
         setView(false);
     }
-
+    const searchResult = () => {
+        if($('.serie-list').is(':empty')){
+            $('.search-result').show();
+        }
+        else {
+            $('.search-result').hide();
+        }
+    }
+    useEffect( () => {
+        searchResult();
+    });
   return (
     <>
+    <p className="search-result">Series not found</p>
     <div className="serie-list">
         {loading ? serieList.filter((serie) => {
             if(input === "") {
