@@ -1,7 +1,13 @@
 .serie-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  flex: 0 0 33.333333%;
+  justify-content: center;
+}
+.serie-list ul li {
+list-style: none;
+flex: 0 0 33.333333%;
 }
 .serie-card{
     width: 350px;
@@ -24,6 +30,7 @@
   background-color: #0b0b13 !important;
 }
 .view-image {
+    margin-top: 30px;
     position: relative;
     width: 100%;
     height: 350px;
@@ -71,6 +78,26 @@
     .loading-text {
         color: tomato;
     }
+    .back {
+      position: absolute;
+      display: block;
+    }
+    @media (min-width: 1550px) {
+  
+      .view-serie{
+        transform: translate(115%, 30%);
+        width: 30% !important;
+        height: auto !important;
+        margin-top: 10px;
+        overflow-y: visible;
+    }
+    .view-image {
+      margin-top: 10px;
+      width: 50% !important;
+      transform: translateX(40%);
+      height: 400px;
+  }
+  }
     @media (min-width: 768px) and (max-width: 1024px) {
   
       .view-serie{

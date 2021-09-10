@@ -38,7 +38,7 @@ const MovieList = ({movieList=[], input = '', loading=false}) => {
   return (
     <>
     <p className="search-result">Movies not found</p>
-    <div className="movie-list">
+    <div className="movie-list  row-cols-xxl-3">
     {loading ? movieList.filter(movie => {
         if(input === "") {
             $('.parag').hide();
@@ -49,14 +49,16 @@ const MovieList = ({movieList=[], input = '', loading=false}) => {
         }).slice(0, 30).map((movie) => {
             return (
                 <>
-                 <div className="list">
-                    <img className="movie-card" 
-                    src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} 
-                    alt="movie" 
-                    onClick = {() => onMovieSelect(movie)}
+                     <ul>
+                         <li>
+                            <img className="movie-card" 
+                            src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} 
+                            alt="movie" 
+                            onClick = {() => onMovieSelect(movie)}
                     />
                     <p className="movie-name">{movie.title}</p>
-                </div>
+                        </li>
+                    </ul>
                 </>
             )
         })

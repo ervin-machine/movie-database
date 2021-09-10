@@ -37,7 +37,7 @@ const SerieList = ({serieList=[], input = '', loading=false}) => {
   return (
     <>
     <p className="search-result">Series not found</p>
-    <div className="serie-list">
+    <div className="serie-list row-cols-xxl-3">
         {loading ? serieList.filter((serie) => {
             if(input === "") {
                 return serie
@@ -47,14 +47,16 @@ const SerieList = ({serieList=[], input = '', loading=false}) => {
             }).slice(0, 30).map((serie) => {
                 return (
                     <>
-                    <div>
-                        <img className="serie-card" 
-                        src={`https://image.tmdb.org/t/p/original${serie.poster_path}`} 
-                        alt="serie" 
-                        onClick = {() => onSerieSelect(serie)}
-                        />
-                        <p>{serie.name}</p>
-                    </div>
+                    <ul>
+                         <li>
+                            <img className="serie-card" 
+                            src={`https://image.tmdb.org/t/p/original${serie.poster_path}`} 
+                            alt="serie" 
+                            onClick = {() => onSerieSelect(serie)}
+                    />
+                    <p className="serie-name">{serie.name}</p>
+                        </li>
+                    </ul>
                     </>
                 )
             })
