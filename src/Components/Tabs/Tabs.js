@@ -3,7 +3,6 @@ import './Tabs.css'
 import MovieList from '../MovieList/MovieList';
 import SerieList from '../SerieList/SerieList';
 
-
 function Tabs() {
     const [isTabClicked, setTabClicked] = useState(true);
     const [movieList, setMovieList] = useState([]);

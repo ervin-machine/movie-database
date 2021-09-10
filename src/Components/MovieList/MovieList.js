@@ -24,36 +24,36 @@ const MovieList = ({movieList=[], input = '', loading=false}) => {
         setView(false);
     }
 
+    
   return (
     <>
     <div className="movie-list">
-        {loading ? movieList.filter(movie => {
-            if(input === "") {
+    {loading ? movieList.filter(movie => {
+        if(input === "") {
+            return movie
+        }  else if(movie.title.substr(2).toLowerCase().includes(input.substr(2).toLowerCase())) {
                 return movie
-            }  else if(movie.title.substr(2).toLowerCase().includes(input.substr(2).toLowerCase())) {
-                    return movie
-                }
-            }).slice(0, 30).map((movie) => {
-                return (
-                    <>
-                    <div>
-                        <img className="movie-card" 
-                        src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} 
-                        alt="movie" 
-                        onClick = {() => onMovieSelect(movie)}
-                        />
-                        <p>{movie.title}</p>
-                    </div>
-                    </>
-                )
-            })
-        : <div className="loading">
-            <div class="spinner"></div>
-            <h2 className="loading-text">loading</h2>
-        </div>
-        
-        }
+            }
+        }).slice(0, 30).map((movie) => {
+            return (
+                <>
+                 <div className="list">
+                    <img className="movie-card" 
+                    src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} 
+                    alt="movie" 
+                    onClick = {() => onMovieSelect(movie)}
+                    />
+                    <p className="movie-name">{movie.title}</p>
+                </div>
+                </>
+            )
+        })
+    : <div className="loading">
+        <div class="spinner"></div>
+        <h2 className="loading-text">loading</h2>
     </div>
+    }
+</div>
     {
         isSelected.poster_path && (
             <div className="view-movie" style={view ? style.on : style.off}>
