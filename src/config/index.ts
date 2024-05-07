@@ -1,0 +1,2 @@
+export const REACT_APP_API_URL="https://api.themoviedb.org/3/"
+export const AUTH_KEY = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMTJjNjU1YWI3YTU1ZTE1Nzc0NTJmYzI5M2JjZTlhMCIsInN1YiI6IjVmZTM4MmE2MGQ0MTdlMDAzYzRkZjBjOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xCcwM1xoMfNxgk0_ygLWcE8Iezk-k1LBKm39BSeRFe0"

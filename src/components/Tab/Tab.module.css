@@ -1,0 +1,14 @@
+.tab {
+    width: 180px;
+    height: 40px;
+    border: 1px solid black;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    border-radius: 20px;
+    background-color: white;
+    cursor: pointer;
+    color: white;
+}

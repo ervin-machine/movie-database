@@ -1,0 +1,34 @@
+.detailView {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.detailViewContent {
+    height: 97.7vh;
+    max-width: 500px;
+    margin: 20px 20px 0px 20px;
+}
+
+.detailTitle {
+    color: white;
+}
+
+.detailOverview {
+    color: white;
+}
+
+.back {
+    background-color: #121419;
+    color: white;
+    border: none;
+    width: 120px;
+    height: 40px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.back:hover {
+    background-color: #3e70ff;
+}

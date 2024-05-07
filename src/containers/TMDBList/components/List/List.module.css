@@ -1,0 +1,34 @@
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px 0;
+    margin: 0 auto;
+}
+
+.listItem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.list > .listItem {
+    background-color: #121419;
+    height: auto;
+    width: 500px;
+    opacity: 0;
+    transition: background-color 0.3s;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+.list > .listItem:hover {
+    background-color: #3e70ff;
+}
+
+a {
+    text-decoration: none; 
+    color: white;
+}
